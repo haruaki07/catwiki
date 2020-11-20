@@ -1,23 +1,31 @@
 <script>
 	import Nav from "../components/Nav.svelte";
-	// import Tailwindcss from "../components/Tailwindcss.svelte";
+	import Footer from "../components/Footer.svelte";
+	import { stores } from "@sapper/app";
+	import PageLoadingBar from "sapper-page-loading-bar/PageLoadingBar.svelte";
 
-	export let segment;
+	const { preloading } = stores();
 </script>
 
-<style>
+<style lang="postcss">
 	main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
-		box-sizing: border-box;
+		width: 90%;
+		min-height: 100vh;
+		@screen md {
+			@apply w-4/5;
+		}
+		@apply relative bg-white mx-auto flex flex-col;
 	}
 </style>
 
-<Nav {segment} />
+{#if $preloading}
+	<PageLoadingBar {preloading} color2="#dec68b" color1="#e3e1dc" />
+{/if}
 
 <main>
-	<slot />
+	<Nav />
+	<div>
+		<slot />
+	</div>
+	<Footer />
 </main>

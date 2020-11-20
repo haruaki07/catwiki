@@ -1,8 +1,7 @@
-const endpoint = "https://api.thecatapi.com/v1";
+const endpoint = process.env.CAT_API_URL;
 
 async function send({ method, path, data, token }) {
 	const fetch = require("node-fetch");
-	const HttpsProxyAgent = require("https-proxy-agent");
 
 	const opts = { method, headers: {} };
 
@@ -14,8 +13,6 @@ async function send({ method, path, data, token }) {
 	if (token) {
 		opts.headers["x-api-key"] = `${token}`;
 	}
-
-	opts.agent = new HttpsProxyAgent("http://192.168.30.23:8080");
 
 	return fetch(`${endpoint}/${path}`, opts)
 		.then((r) => r.text())

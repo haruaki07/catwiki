@@ -1,13 +1,13 @@
 import { Router } from "express";
 const router = Router();
 
-import { get } from "./../lib/api";
+import { get } from "./api";
 import "./db";
 import Search from "./models/Search";
 
 const token = process.env.CAT_API_KEY;
 
-router.get("/breeds", async (req, res) => {
+router.get("/breed", async (req, res) => {
 	try {
 		let data = await get("breeds", token);
 		data = data.map(({ id, name }) => ({ id, name }));
@@ -18,10 +18,17 @@ router.get("/breeds", async (req, res) => {
 	}
 });
 
-router.get("/breeds", async (req, res) => {
+router.get("/breed/:breed_id", async (req, res) => {
 	try {
-		const { breed_id } = req.query;
+		const { breed_id } = req.params;
 		let data = await get(`images/search?breed_id=${breed_id}`, token);
+		if (!data.length) {
+			res
+				.status(400)
+				.json({ code: 400, message: `not found breed with id "${breed_id}"` });
+			return;
+		}
+
 		let images = await get(`images/search?breed_id=${breed_id}&limit=8`, token);
 
 		images = images.map(({ url }) => url);
@@ -34,9 +41,9 @@ router.get("/breeds", async (req, res) => {
 	}
 });
 
-router.get("/breeds/popular", async (req, res) => {
+router.get("/popular", async (req, res) => {
 	try {
-		const data = await Search.find({}).limit(10).sort({ views: -1 });
+		const data = await Search.find({}).sort({ views: -1 }).limit(10);
 		res.status(200).json({ code: 200, message: "success", data });
 	} catch (err) {
 		console.log(err);
@@ -44,7 +51,7 @@ router.get("/breeds/popular", async (req, res) => {
 	}
 });
 
-router.post("/breeds/popular/:breed_id", async (req, res) => {
+router.post("/popular/:breed_id", async (req, res) => {
 	try {
 		const { breed_id } = req.params;
 		const search = await Search.findOne({ breed_id });
@@ -58,10 +65,11 @@ router.post("/breeds/popular/:breed_id", async (req, res) => {
 				views: 1,
 			});
 			res.status(200).json({ code: 200, message: "success", data: newSearch });
+		} else {
+			search.views++;
+			search.save();
+			res.status(200).json({ code: 200, message: "success", data: search });
 		}
-		search.views++;
-		search.save();
-		res.status(200).json({ code: 200, message: "success", data: search });
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ code: 500, message: "error" });
