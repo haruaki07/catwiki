@@ -15,7 +15,6 @@
 	import Gallery from "../../components/Gallery.svelte";
 	import Rating from "../../components/Rating.svelte";
 	import Img from "../../components/Img.svelte";
-	import Img1 from "images/Img1.png";
 
 	export let breed = {};
 </script>

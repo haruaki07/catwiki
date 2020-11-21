@@ -1,5 +1,6 @@
 import sirv from "sirv";
 import express from "express";
+import "dotenv/config";
 import compression from "compression";
 import * as sapper from "@sapper/server";
 import apiRoutes from "./api/routes";

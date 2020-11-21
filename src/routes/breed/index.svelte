@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from "svelte";
-
 	import Img from "../../components/Img.svelte";
 	import { popularBreeds } from "../../stores";
 

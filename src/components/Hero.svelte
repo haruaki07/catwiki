@@ -3,6 +3,7 @@
 	import HeroBreeds from "./HeroBreeds.svelte";
 	import Logo from "./Logo.svelte";
 	import Search from "./Search.svelte";
+	import SearchMobile from "./SearchMobile.svelte";
 
 	let logoWidth = 250;
 	let innerWidth;
@@ -40,14 +41,18 @@
 	}
 </style>
 
-<svelte:window bind:innerWidth></svelte:window>
+<svelte:window bind:innerWidth />
 
 <div class="hero">
 	<div class="hero-header" style="background-image: url({HeroImg})">
 		<div class="hero-header-content">
 			<Logo color="#ffffff" width={logoWidth} />
 			<p class="text">Get to know more about your cat breed</p>
-			<Search/>
+			{#if innerWidth >= 768}
+				<Search />
+			{:else}
+				<SearchMobile />
+			{/if}
 		</div>
 	</div>
 	<HeroBreeds />

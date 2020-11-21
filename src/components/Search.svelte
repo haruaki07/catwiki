@@ -10,13 +10,13 @@
 	onMount(() => {
 		if (!searchEl) searchEl = document.querySelector(".search");
 
-		const handleOutsideClick = (event) => {
-			if (listOpen && !searchEl.contains(event.target)) {
+		const handleOutsideClick = (e) => {
+			if (listOpen && !searchEl.contains(e.target)) {
 				listOpen = false;
 				searchTerm.set("");
-			} else if (event.target.classList.contains("search-list-link")) {
-				event.preventDefault();
-				let url = event.target.getAttribute("href");
+			} else if (e.target.classList.contains("search-list-link")) {
+				e.preventDefault();
+				let url = e.target.getAttribute("href");
 				fetch(
 					`${process.env.BACKEND_API_URL}/popular/${url.split("/").slice(-1)}`,
 					{

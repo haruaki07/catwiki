@@ -1,6 +1,6 @@
 {
-	"name": "cat-wiki-client",
-	"description": "cat-wiki-client",
+	"name": "cat-wiki",
+	"description": "cat-wiki",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "run-p watch:*",
