@@ -8,7 +8,7 @@ import apiRoutes from "./api/routes";
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
 
-express() // You can also use Polka
+const app = express() // You can also use Polka
 	.use(express.json(), express.urlencoded({ extended: true }))
 	.use("/api", apiRoutes)
 	.use(
@@ -19,3 +19,5 @@ express() // You can also use Polka
 	.listen(PORT, (err) => {
 		if (err) console.log("error", err);
 	});
+
+export default app;
