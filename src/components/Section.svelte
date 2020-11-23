@@ -1,7 +1,7 @@
 <script>
-	import Img1 from "images/Img1.png";
-	import Img2 from "images/Img2.png";
-	import Img3 from "images/Img3.png";
+	import Img1 from "../images/Img1.png";
+	import Img2 from "../images/Img2.png";
+	import Img3 from "../images/Img3.png";
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->

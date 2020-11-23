@@ -1,5 +1,5 @@
 <script>
-	import HeroImg from "images/HeroImg.png";
+	import HeroImg from "../images/HeroImg.png";
 	import HeroBreeds from "./HeroBreeds.svelte";
 	import Logo from "./Logo.svelte";
 	import Search from "./Search.svelte";

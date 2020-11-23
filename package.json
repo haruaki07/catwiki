@@ -4,10 +4,10 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "run-p watch:*",
-		"watch:css": "postcss src/node_modules/global.pcss -o static/global.css -w",
+		"watch:css": "postcss src/global.pcss -o static/global.css -w",
 		"watch:dev": "sapper dev",
 		"build": "run-s build:css build:sapper",
-		"build:css": "cross-env NODE_ENV=production postcss src/node_modules/global.pcss -o static/global.css",
+		"build:css": "cross-env NODE_ENV=production postcss src/global.pcss -o static/global.css",
 		"build:sapper": "sapper build --legacy",
 		"build:export": "sapper export --legacy",
 		"export": "run-s build:css build:export",
