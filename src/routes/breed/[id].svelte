@@ -1,6 +1,6 @@
 <script context="module">
 	export async function preload({ params: { id } }) {
-		let res = await this.fetch(`http://localhost:3000/api/breed/${id}`);
+		let res = await this.fetch(`${process.env.BACKEND_API_URL}/breed/${id}`);
 		res = await res.json();
 
 		if (res.code === 200) {
