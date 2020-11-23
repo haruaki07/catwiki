@@ -10,6 +10,6 @@ export const searchTerm = writable("");
 export const filteredBreeds = derived(
 	[breeds, searchTerm],
 	([$breeds, $searchTerm]) => {
-		return filterBySearchTerm($breeds, $searchTerm);
+		return filterBySearchTerm($breeds, $searchTerm.trim());
 	}
 );

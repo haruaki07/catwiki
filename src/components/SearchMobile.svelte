@@ -33,11 +33,11 @@
 		&-button {
 			border-radius: 59px;
 			font-size: 12px;
-			@apply bg-white py-2 px-4 pr-8 text-primary font-medium w-40 outline-none border-primary border flex justify-between items-center;
+			@apply bg-white py-2 px-4 text-primary font-medium w-40 outline-none border-primary border flex justify-between items-center;
 		}
 		&-modal {
 			padding: 0 5%;
-			@apply bg-white fixed top-0 left-0 w-full z-10 h-screen;
+			@apply bg-white fixed top-0 left-0 w-full z-10 h-screen overflow-y-auto;
 			@screen md {
 				padding: 0 10%;
 			}
@@ -76,7 +76,8 @@
 	</button>
 	{#if show}
 		<div class="search-modal" transition:fade={{ duration: 150 }}>
-			<button class="close-button" on:click={closeModal}>Close</button>
+			<button class="close-button" on:click={closeModal}><i
+					class="material-icons">close</i></button>
 			<input
 				bind:value={$searchTerm}
 				class="search-modal-input"

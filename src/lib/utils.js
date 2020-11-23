@@ -31,5 +31,7 @@ export function debounce(fn, wait) {
  * @param {String} search
  */
 export function filterBySearchTerm(arr, search) {
-	return arr.filter((val) => val.name.toLowerCase().includes(search));
+	return arr.filter((val) =>
+		val.name.toLowerCase().includes(search.toLowerCase())
+	);
 }
