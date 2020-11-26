@@ -7,7 +7,7 @@
 
 <style lang="postcss">
 	.error {
-		@apply flex items-center justify-center h-full;
+		@apply flex justify-center items-center flex-col h-full;
 		&-code {
 			font-size: 26px;
 			padding: 0 15px 0 15px;
@@ -24,8 +24,10 @@
 </style>
 
 <div class="error">
-	<div class="error-code">{status}</div>
-	<div class="error-message" style="padding: 10px;">{error.message}</div>
+	<div class="flex items-center">
+		<div class="error-code">{status}</div>
+		<div class="error-message" style="padding: 10px;">{error.message}</div>
+	</div>
 	{#if dev && error.stack}
 		<pre class="error-stack">{error.stack}</pre>
 	{/if}

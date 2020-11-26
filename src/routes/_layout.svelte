@@ -11,10 +11,12 @@
 	main {
 		width: 90%;
 		min-height: 100vh;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: max-content 1fr auto;
 		@screen md {
 			@apply w-4/5;
 		}
-		@apply relative bg-white mx-auto flex flex-col;
+		@apply relative bg-white mx-auto grid;
 	}
 </style>
 
